@@ -67,14 +67,6 @@
             <version>4.1.2</version>
         </dependency>
 
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.docx4j/docx4j-core &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.docx4j</groupId>-->
-<!--            <artifactId>docx4j-core</artifactId>-->
-<!--            <version>11.1.7</version>-->
-<!--        </dependency>-->
-
         <!-- Spring REST jackson JSON Processing API -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

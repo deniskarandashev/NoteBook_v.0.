@@ -3,6 +3,9 @@ package com.example.NoteBook.domain;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Denis Karandashev
@@ -11,6 +14,9 @@ import java.util.*;
  */
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @XmlRootElement
 public class Note {
     @Id
@@ -26,19 +32,12 @@ public class Note {
     private int noteGroup;
     private int redaction;
 
-//    private Cousers cousers;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
-
     private String authorName;
-
     private String coauthor;
     private Long coauthorId;
-
-    public Note() {
-    }
 
     public Note(String text, String title) {
         this.text = text;
@@ -50,26 +49,9 @@ public class Note {
         this.previousId = 0;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-//    @XmlElement(name = "user_id")
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
     @XmlElement(name = "text")
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     @XmlAttribute(name = "id")
@@ -77,17 +59,9 @@ public class Note {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     @XmlElement(name = "title")
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Date getDate() {
-        return date;
     }
 
     @XmlElement(name = "date")
@@ -95,17 +69,9 @@ public class Note {
         this.date = date;
     }
 
-    public Date getLastEditDate() {
-        return lastEditDate;
-    }
-
     @XmlElement(name = "last_edit_date")
     public void setLastEditDate(Date lastEditDate) {
         this.lastEditDate = lastEditDate;
-    }
-
-    public boolean isVisible() {
-        return isVisible;
     }
 
     @XmlElement(name = "is_visible")
@@ -113,17 +79,9 @@ public class Note {
         isVisible = visible;
     }
 
-    public int getPreviousId() {
-        return previousId;
-    }
-
     @XmlElement(name = "previous_id")
     public void setPreviousId(int previousId) {
         this.previousId = previousId;
-    }
-
-    public int getNoteGroup() {
-        return noteGroup;
     }
 
     @XmlElement(name = "note_group")
@@ -144,17 +102,9 @@ public class Note {
         return Objects.hash(noteGroup);
     }
 
-    public int getRedaction() {
-        return redaction;
-    }
-
     @XmlElement(name = "redaction")
     public void setRedaction(int redaction) {
         this.redaction = redaction;
-    }
-
-    public String getCoauthor() {
-        return coauthor;
     }
 
     @XmlElement(name = "coauthor")
@@ -162,30 +112,9 @@ public class Note {
         this.coauthor = coauthor;
     }
 
-    public Long getCoauthorId() {
-        return coauthorId;
-    }
-
-//    @XmlElement(name = "coauthor_id")
-    public void setCoauthorId(Long coauthorId) {
-        this.coauthorId = coauthorId;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
     @XmlElement(name = "author")
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
-    }
-
-    public boolean isRestored() {
-        return isRestored;
-    }
-
-    public void setRestored(boolean restored) {
-        isRestored = restored;
     }
 }
 
