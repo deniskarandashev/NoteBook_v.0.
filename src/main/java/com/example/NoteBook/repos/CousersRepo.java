@@ -1,10 +1,8 @@
 package com.example.NoteBook.repos;
 
 import com.example.NoteBook.domain.Cousers;
-import com.example.NoteBook.domain.User;
-import org.springframework.data.repository.CrudRepository;
-
 import java.util.Optional;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * @author Denis Karandashev
@@ -13,11 +11,5 @@ import java.util.Optional;
  */
 public interface CousersRepo extends CrudRepository<Cousers, Integer> {
     Optional<Cousers> findById(Integer id);
-    Optional<Cousers> findAllByAuthor(User user);
     Iterable<Cousers> findAll();
-    Optional<Cousers> findByNoteId(Integer id);
-    Optional<Cousers> deleteAllByNoteId(Integer id);
-    Optional<Cousers> deleteAllByAuthor(User user);
-
-
 }

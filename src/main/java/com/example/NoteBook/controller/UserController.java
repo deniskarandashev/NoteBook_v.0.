@@ -1,22 +1,22 @@
 package com.example.NoteBook.controller;
 
-import com.example.NoteBook.domain.Cousers;
 import com.example.NoteBook.domain.Note;
 import com.example.NoteBook.domain.Role;
 import com.example.NoteBook.domain.User;
-import com.example.NoteBook.repos.CousersRepo;
 import com.example.NoteBook.repos.NotesRepo;
 import com.example.NoteBook.repos.UserRepo;
 import com.example.NoteBook.service.UserService;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Denis Karandashev
@@ -36,18 +36,12 @@ public class UserController {
     @Autowired
     private NotesRepo notesRepo;
 
-    @Autowired
-    private CousersRepo cousersRepo;
-
-
-    //    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
         model.addAttribute("users", userService.findAll());
         return "userList";
     }
 
-    //    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String userEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
@@ -55,7 +49,6 @@ public class UserController {
         return "userEdit";
     }
 
-    //    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public String userSave(
             @RequestParam String username,
@@ -105,54 +98,4 @@ public class UserController {
 
         return "redirect:/user/profile";
     }
-
-//    @PostMapping("profile/addcoauthor")
-//    public String addCoauthor(
-//            @AuthenticationPrincipal User user,
-//            @RequestParam(required = false) String coauthor,
-//            Model model) {
-//        //добавление соавтора - новая редакция (много соавторов)
-//        Iterable<Cousers> cousers = cousersRepo.findAll();
-//        List<User> users = userRepo.findAll();
-//        for (User u : users) {
-//            if (u.getUsername().equals(coauthor)) {
-//                Cousers couser = new Cousers(user);
-//                couser.setCoauthor(u);
-//                model.addAttribute("coauthor", couser.getCoauthor());
-//            }
-//        }
-//        cousersRepo.saveAll(cousers);
-//
-//        return "redirect:/user/profile";
-//    }
-
-//    @PostMapping("profile/addCoreader")
-//    public String addCoreader(
-//            @AuthenticationPrincipal User user,
-//            @RequestParam(required = false) String coreader,
-//            Model model) {
-//        //добавление соавтора - новая редакция (много соавторов)
-//        boolean isCoreader = false;
-//        Iterable<Cousers> cousers = cousersRepo.findAll();
-//        List<User> users = userRepo.findAll();
-//        for (User u : users) {
-//            if (u.getUsername().equals(coreader)) {
-//                for (Cousers c : cousers){
-//                    if (c.getCoreader().equals(coreader) && c.getAuthor().equals(user)){
-//                        isCoreader = true;
-//                        break;
-//                    }
-//                }
-//                if (isCoreader == false){
-//                    Cousers couser = new Cousers(user);
-//                    couser.setAuthor(user);
-//                    couser.setCoreader(u);
-//                    model.addAttribute("author", user.getUsername());
-//                    model.addAttribute("coreader", couser.getCoreader());
-//                }
-//            }
-//        }
-//        cousersRepo.saveAll(cousers);
-//        return "redirect:/user/profile";
-//    }
 }

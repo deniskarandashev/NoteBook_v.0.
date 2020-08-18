@@ -1,13 +1,11 @@
 package com.example.NoteBook.controller;
 
-import com.example.NoteBook.domain.Cousers;
 import com.example.NoteBook.domain.Note;
 import com.example.NoteBook.domain.User;
 import com.example.NoteBook.repos.CousersRepo;
 import com.example.NoteBook.repos.NotesRepo;
 import com.example.NoteBook.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,28 +74,11 @@ public class MainController {
         notesRepo.save(note);
         note.setNoteGroup(note.getId());
         notesRepo.save(note);
-//        Cousers cousers = new Cousers(user);
-//        cousersRepo.save(cousers);
 
         Iterable<Note> notes = notesRepo.findAll();
         model.addAttribute("notes", notes);
         return "main";
     }
-
-//    @PostMapping("filter")
-//    public String filter(@RequestParam String filter, Map<String, Object> model) {
-//        Iterable<Note> notes;
-//
-//        if (filter != null && !filter.isEmpty()) {
-//            notes = notesRepo.findByTitle(filter);
-//        } else {
-//            notes = notesRepo.findAll();
-//        }
-//
-//        model.put("notes", notes);
-//
-//        return "main";
-//    }
 
     @Transactional
     @GetMapping("/delete/{note}")
@@ -107,10 +88,8 @@ public class MainController {
         Integer noteGroupId = note.getNoteGroup();
         if (note.getPreviousId() == 0) {
             notesRepo.deleteNoteByNoteGroup(noteGroupId);
-//            cousersRepo.deleteAllByNoteId(id);
         } else {
             notesRepo.deleteNoteByNoteGroup(noteGroupId);
-//            cousersRepo.deleteAllByNoteId(id);
         }
         return "redirect:/main";
     }

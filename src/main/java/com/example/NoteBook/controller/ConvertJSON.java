@@ -5,11 +5,14 @@ import com.example.NoteBook.domain.User;
 import com.example.NoteBook.repos.NotesRepo;
 import com.example.NoteBook.repos.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jdom.Attribute;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,17 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.xml.sax.SAXException;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.awt.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * @author Denis Karandashev

@@ -53,17 +53,6 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
     }
 
-//    public void updateProfile(User user, String password, String coAuthor) {
-//        if (!StringUtils.isEmpty(password)){
-//            user.setPassword(password);
-//        }
-//        if (!StringUtils.isEmpty(coAuthor)){
-//            user.setCoAuthor(coAuthor);
-//        }
-//
-//        userRepo.save(user);
-//    }
-
     public void updateProfile(User user, String coauthor) {
         if (!StringUtils.isEmpty(coauthor)){
             user.setCoauthor(coauthor);

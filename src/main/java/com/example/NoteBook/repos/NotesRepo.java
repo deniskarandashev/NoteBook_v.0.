@@ -13,13 +13,8 @@ import java.util.List;
  */
 
 public interface NotesRepo extends CrudRepository<Note, Integer> {
-    List<Note> findByTitle(String tag);
-    List<Note> deleteNoteByTitle(String tag);
-    List<Note> deleteNoteById(int id);
     List<Note> deleteNoteByNoteGroup(int ng);
-    List<Note> findById(String id);
     List<Note> findAllByNoteGroup(int ng);
     List<Note> findAllByAuthor(User user);
     List<Note> findAllByCoauthor(String coauthor);
-    List<Note> findAllByCoauthorId(Long coauthorId);
  }
